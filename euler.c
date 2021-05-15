@@ -34,23 +34,25 @@ double euler(){
 void funcTutorial();
 
 int main(int argc, char *argv[]){
-    char tutorial = '1';
-    printf("\nPress the key 0 and enter to the tutorial, any other character to skip the tutorial\n");
-    scanf("%c",&tutorial);
-    if(tutorial == '0'){
-        funcTutorial();
-    }
-    if(argc==1){
-        printf("\nPlese enter the data: \n");
-        printf("xo yo X H\n");
-        scanf("%lf %lf %lf %lf",&xo,&yo,&x,&h);
-    }else if(argc==5){
+    if(argc==5){
         xo = atof(argv[1]);
         yo = atof(argv[2]);
         x = atof(argv[3]);
         h = atof(argv[4]);
+    }else if(argc==1){
+        char tutorial = '1';
+        printf("\nPress the key 0 and enter to the tutorial, any other character to skip the tutorial\n");
+        scanf("%c",&tutorial);
+        if(tutorial == '0'){
+            funcTutorial();
+        }
+        
+        printf("\nPlese enter the data: \n");
+        printf("xo yo X H\n");
+        scanf("%lf %lf %lf %lf",&xo,&yo,&x,&h);
     }else{
         printf("ERROR IN ARGUMENT\n");
+        fprintf(stderr,"ERROR IN ARGUMENT");
         exit(EXIT_FAILURE);
     }
     printf("\nThe approximation for the value %lf is: %lf",x,euler());
