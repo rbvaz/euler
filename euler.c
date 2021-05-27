@@ -14,18 +14,20 @@ double x = 0;
 double h = 0;
 
 double funtion(double x, double y){
-    return y-x; 
+    return (1+pow(y,2.0))/4;
 }
 
 double euler(){
     int N = abs(((x - xo)/h)) + 1;
-    double xn,yn;
+    double xn,yn,yn2;
     xn = xo;
     yn = yo;
+    yn2 = yn;
     printf("\nDEBUG: x%d,y%d = (%lf,%lf)\n",0,0,xn,yn);
     for (int i = 1; i <= N; i++){
         xn = xn + h;
-        yn = yn + h*funtion(xn,yn);
+        yn2 = yn + h*funtion(xn,yn);
+        yn = yn + (h/2)*(funtion(xn,yn)+funtion(xn,yn2));
         printf("DEBUG: x%d,y%d = (%lf,%lf)\n",i,i,xn,yn);
     }
     return yn;
