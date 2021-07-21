@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <Math.h>
+#include <math.h>
 
 double xo = 0;
 double yo = 0;
@@ -34,6 +34,7 @@ double euler(){
 }
 
 void funcTutorial();
+void funcTutorialEsp();
 
 int main(int argc, char *argv[]){
     if(argc==5){
@@ -44,9 +45,20 @@ int main(int argc, char *argv[]){
     }else if(argc==1){
         char tutorial = '1';
         printf("\nPress the key 0 and enter to the tutorial, any other character to skip the tutorial\n");
+        printf("\nPresione 0 y enter para ver el tutorial, cualquier otro caracter para no ver\n");
         scanf("%c",&tutorial);
         if(tutorial == '0'){
-            funcTutorial();
+            char idioma = '0';
+            do {
+                if(idioma != '\n' && idioma != '\r') { //no desplegar segunda vez por el querido \n que le sigue a los caracteres
+                    printf("1 - Espanol\n");
+                    printf("2 - English\n");
+                }
+                scanf("%c",&idioma);
+            } while(idioma != '1' && idioma != '2');
+            
+            if(idioma == 2) funcTutorial();
+            else funcTutorialEsp(); 
         }
         
         printf("\nPlese enter the data: \n");
@@ -74,4 +86,19 @@ void funcTutorial(){
     printf("If you want to use the program with arguments, the order in which you\n");
     printf("must enter the data is: the initial value of x, the initial value of y, the x \n");
     printf("of the y that you want to calculate, the precision level.\n\n\n");
+}
+
+void funcTutorialEsp(){
+    printf("\n\nTUTORIAL:\n\nSi se muestra lo siguiente en la pantalla: \n\n");
+
+    printf("\"Ingresar los siguientes datos: \n");
+    printf("xo yo X H\"\n\n");
+
+    printf("Se deben dar los datos como sigue; primero el valor incial de x, un espacio,\n");
+    printf("valor inicial de y, un espacio, la X de la Y que se quiere calcular, un espacio,\n");
+    printf(" y finalmente la precisión, eso es, la H, luego apretar enter.\n\n");
+
+    printf("Si quiere usar el programa con argumentos, el orden en que debe poner los valores es\n");
+    printf("valor inicial de x, valor inicial de y, la x \n");
+    printf("de la y que se quiere calcular, nivel de precisión.\n\n\n");
 }
